@@ -1,0 +1,12 @@
+node_modules
+.next
+# müşteri hesapları (local veri — asla commit etme)
+data/
+out
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+# yerel Claude/editör ayarları
+.claude/
