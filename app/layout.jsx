@@ -2,6 +2,7 @@ import './globals.css'
 import { CartProvider } from '@/lib/cart-context'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import WelcomeOffer from '@/components/WelcomeOffer'
 
 const SITE_URL = process.env.SITE_URL || 'http://localhost:3000'
 
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
           {!COMING_SOON && <Header />}
           <main>{children}</main>
           {!COMING_SOON && <Footer />}
+          {!COMING_SOON && <WelcomeOffer />}
         </CartProvider>
       </body>
     </html>
