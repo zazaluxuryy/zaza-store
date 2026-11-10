@@ -31,7 +31,7 @@ export default function GatePage() {
   const serif = '"Cormorant Garamond", Georgia, serif'
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FAF6F0', padding: 24 }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FAF6F0', padding: 24, overflow: 'auto' }}>
       <div style={{ width: '100%', maxWidth: 400, textAlign: 'center' }}>
         <img src="/logo-mark.png" alt="" style={{ height: 68, width: 'auto', margin: '0 auto 18px', display: 'block' }} />
         <div style={{ fontFamily: serif, fontSize: '2rem', lineHeight: 1.1, color: '#2B211C', letterSpacing: '0.02em' }}>Zaza Luxury</div>
