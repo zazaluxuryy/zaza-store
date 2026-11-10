@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
   const p = await getProduct(id)
   if (!p) return { title: 'Product not found' }
   const name = p.title || [p.brand, p.subtype].filter(Boolean).join(' ')
-  const desc = `${name}${p.price != null ? ` · ${formatUSD(p.price)}` : ''}. Authenticated pre-owned luxury at Zaza Luxury.`
+  const desc = (p.description && p.description.slice(0, 160)) || `${name}${p.price != null ? ` · ${formatUSD(p.price)}` : ''}. Authenticated pre-owned luxury at Zaza Luxury.`
   return {
     title: name,
     description: desc,
@@ -71,13 +71,30 @@ export default async function ProductPage({ params }) {
           <h1>{name}</h1>
           <div className="price">{p.price != null ? formatUSD(p.price) : 'Price on request'}</div>
 
+          {p.description && <p style={{ margin: '0 0 1.5rem', lineHeight: 1.65, color: '#4a4038' }}>{p.description}</p>}
+
           <AddToCartButton product={p} />
 
           <div className="specs">
             {p.brand && <div><div className="k">Maison</div>{p.brand}</div>}
+            {p.model && <div><div className="k">Model</div>{p.model}</div>}
             {p.type && <div><div className="k">Category</div>{p.type}</div>}
             {p.subtype && <div><div className="k">Style</div>{p.subtype}</div>}
+            {p.color && <div><div className="k">Colour</div>{p.color}</div>}
+            {p.material && <div><div className="k">Material</div>{p.material}</div>}
+            {p.condition && <div><div className="k">Condition</div>{p.condition}</div>}
+            {p.measurements && <div><div className="k">Dimensions</div>{p.measurements}</div>}
+            {p.dateCode && <div><div className="k">Date code</div>{p.dateCode}</div>}
+            {p.era && <div><div className="k">Era</div>{p.era}</div>}
+            {p.completeness && <div><div className="k">Included</div>{p.completeness}</div>}
           </div>
+
+          {p.conditionNotes && (
+            <div style={{ margin: '0.25rem 0 1.5rem' }}>
+              <div className="k" style={{ marginBottom: 4 }}>Condition notes</div>
+              <p style={{ margin: 0, lineHeight: 1.6, color: '#6b5f52', fontSize: '0.92rem' }}>{p.conditionNotes}</p>
+            </div>
+          )}
 
           <div className="assurance">
             <span><i>✦</i> <Link href="/authentication" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>Expert-authenticated — ships with COA</Link></span>
